@@ -1,0 +1,41 @@
+# SYSTEM_JERICHO: Core Git Ignore
+# Exclude system data, docs, environment, temp, and IDE/editor files
+
+# --- Exclude data, docs, and environment ---
+data/
+docs/
+.env
+
+# --- Exclude compliance/private docs ---
+OpenAI.md
+
+# --- Python cache and build artifacts ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.egg-info/
+*.log
+*.tmp
+*.bak
+
+# --- Test, coverage, and build outputs ---
+htmlcov/
+.coverage
+
+# --- IDE/editor configs ---
+*.swp
+*.swo
+*.DS_Store
+*.idea/
+*.vscode/
+.envrc
+
+# --- Allow source, config, scripts, utilities, and tests ---
+!src/
+!config/
+!scripts/
+!utilities/
+!tests/
