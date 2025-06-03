@@ -1,5 +1,5 @@
 """
-Path: scripts/sys_surveillance_cam/system_audit/report_writer.py
+Path: scripts/sys_audit/report_writer.py
 Description: Writes the audit results as a unified, timestamped JSON report.
 Version: 1.0.0
 Sub_System: SYS_SURVEILLANCE_CAM

@@ -1,5 +1,5 @@
 """
-Path: scripts/sys_surveillance_cam/system_audit/process_audit.py
+Path: scripts/sys_audit/process_audit.py
 Description: Finds processes using specified webcam/microphone devices.
 Version: 1.0.0
 Sub_System: SYS_SURVEILLANCE_CAM

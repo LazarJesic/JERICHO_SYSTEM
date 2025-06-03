@@ -1,5 +1,5 @@
 """
-Path: scripts/sys_surveillance_cam/system_audit/__init__.py
+Path: scripts/sys_audit/__init__.py
 Description: Marks system_audit as a Python module.
 Version: 1.0.0
 Sub_System: SYS_SURVEILLANCE_CAM

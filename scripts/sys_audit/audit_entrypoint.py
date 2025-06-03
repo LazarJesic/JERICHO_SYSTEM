@@ -1,5 +1,5 @@
 """
-Path: scripts/sys_surveillance_cam/system_audit/audit_entrypoint.py
+Path: scripts/sys_audit/audit_entrypoint.py
 Description: Main entrypoint to perform hardware discovery, process auditing, and report writing.
 Version: 1.0.0
 Sub_System: SYS_SURVEILLANCE_CAM

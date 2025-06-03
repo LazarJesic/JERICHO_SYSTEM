@@ -1,5 +1,5 @@
 """
-Path: scripts/sys_surveillance_cam/system_audit/hardware_discovery.py
+Path: scripts/sys_audit/hardware_discovery.py
 Description: Enumerates all webcams and microphones attached to the system.
 Version: 1.0.0
 Sub_System: SYS_SURVEILLANCE_CAM
