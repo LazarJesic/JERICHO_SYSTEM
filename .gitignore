@@ -1,5 +1,13 @@
+#"""
+#Path: .gitignore
+#Description: Excludes sensitive, runtime, and large auto-generated files and folders from Git tracking per SYSTEM_JERICHO policy. Explicitly excludes OpenAI.md and README - OpenAI.md.
+#Version: 1.0.1
+#Sub_System: CORE
+#System: JERICHO_SYSTEM
+#"""
+
 # SYSTEM_JERICHO: Core Git Ignore
-# Exclude system data, docs, environment, temp, and IDE/editor files
+# Exclude system data, docs, environment, compliance, temp, and IDE/editor files
 
 # --- Exclude data, docs, and environment ---
 data/
@@ -8,6 +16,7 @@ docs/
 
 # --- Exclude compliance/private docs ---
 OpenAI.md
+README - OpenAI.md
 
 # --- Python cache and build artifacts ---
 __pycache__/
