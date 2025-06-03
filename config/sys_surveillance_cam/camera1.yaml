@@ -1,0 +1,11 @@
+# Path: config/sys_surveillance_cam/camera1.yaml
+# Description: Configuration for Camera 1
+
+camera_id: "camera1"
+source: 0
+frame_width: 1280
+frame_height: 720
+fps: 20
+codec: "mp4v"
+min_area: 5000
+log_level: "INFO"

@@ -1,0 +1,69 @@
+{
+  "timestamp": "2025-06-02_21-56-13",
+  "webcams": [
+    {
+      "device": "WebCam",
+      "name": "USB\\VID_13D3&PID_56EB&MI_00\\6&5308FD4&0&0000 USB2.0 HD UVC",
+      "platform": "win"
+    }
+  ],
+  "webcam_processes": [],
+  "microphones": [
+    {
+      "device": "Microphones",
+      "name": "INTELAUDIO\\CTLR_DEV_A0C8&LINKTYPE_02&DEVTYPE_00&VEN_8086&DEV_AE20&SUBSYS_10431382&REV_10EC\\5&47E528A&0&0000 Intelr Smart Sound Technology for Digital",
+      "platform": "win"
+    },
+    {
+      "device": "Audio",
+      "name": "INTELAUDIO\\CTLR_DEV_A0C8&LINKTYPE_06&DEVTYPE_06&VEN_8086&DEV_AE50&SUBSYS_13821043&REV_0001\\0603 Intelr Smart Sound Technology for USB",
+      "platform": "win"
+    },
+    {
+      "device": "Audio",
+      "name": "INTELAUDIO\\FUNC_01&VEN_10EC&DEV_0294&SUBSYS_10431382&REV_1000\\5&47E528A&0&0001 Realtek High Definition",
+      "platform": "win"
+    },
+    {
+      "device": "Audio",
+      "name": "INTELAUDIO\\CTLR_DEV_A0C8&LINKTYPE_03&DEVTYPE_00&VEN_8086&DEV_AE30&SUBSYS_10431ABE&REV_0001\\5&47E528A&0&0000 Intelr Smart Sound Technology for Bluetoothr",
+      "platform": "win"
+    }
+  ],
+  "mic_processes": [],
+  "hardware_info": {
+    "webcams": [
+      {
+        "device": "WebCam",
+        "name": "USB\\VID_13D3&PID_56EB&MI_00\\6&5308FD4&0&0000 USB2.0 HD UVC",
+        "platform": "win"
+      }
+    ],
+    "microphones": [
+      {
+        "device": "Microphones",
+        "name": "INTELAUDIO\\CTLR_DEV_A0C8&LINKTYPE_02&DEVTYPE_00&VEN_8086&DEV_AE20&SUBSYS_10431382&REV_10EC\\5&47E528A&0&0000 Intelr Smart Sound Technology for Digital",
+        "platform": "win"
+      },
+      {
+        "device": "Audio",
+        "name": "INTELAUDIO\\CTLR_DEV_A0C8&LINKTYPE_06&DEVTYPE_06&VEN_8086&DEV_AE50&SUBSYS_13821043&REV_0001\\0603 Intelr Smart Sound Technology for USB",
+        "platform": "win"
+      },
+      {
+        "device": "Audio",
+        "name": "INTELAUDIO\\FUNC_01&VEN_10EC&DEV_0294&SUBSYS_10431382&REV_1000\\5&47E528A&0&0001 Realtek High Definition",
+        "platform": "win"
+      },
+      {
+        "device": "Audio",
+        "name": "INTELAUDIO\\CTLR_DEV_A0C8&LINKTYPE_03&DEVTYPE_00&VEN_8086&DEV_AE30&SUBSYS_10431ABE&REV_0001\\5&47E528A&0&0000 Intelr Smart Sound Technology for Bluetoothr",
+        "platform": "win"
+      }
+    ]
+  },
+  "process_info": {
+    "webcam_processes": [],
+    "mic_processes": []
+  }
+}
