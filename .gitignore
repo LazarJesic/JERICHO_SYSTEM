@@ -13,6 +13,8 @@
 data/
 docs/
 .env
+.gitignore
+
 
 # --- Exclude compliance/private docs ---
 OpenAI.md
