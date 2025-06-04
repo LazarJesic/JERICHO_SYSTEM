@@ -1,25 +1,22 @@
 """
 Path: utilities/deployment_helpers.py
-Description: Helper functions for Docker builds, CI/CD, and environment setup.
-Version: 1.0.0
+Description: Helpers for CI/CD, environment validation, and migrations.
+Version: 2.1.0
 Sub_System: UTILITIES
 System: JERICHO_SYSTEM
 """
+
 import os
 import subprocess
 
-def build_docker_image(subsys: str):
-    """
-    Builds a Docker image for the given subsystem.
-    """
-    image_tag = f"jericho_{subsys.lower()}:latest"
-    subprocess.run(["docker", "build", "-t", image_tag, "."], check=True)
-    return image_tag
 
-def run_subsys_container(subsys: str):
-    """
-    Runs the subsystem in a Docker container.
-    """
-    image_tag = build_docker_image(subsys)
-    container_name = f"jericho_{subsys.lower()}"
-    subprocess.run(["docker", "run", "--rm", "--name", container_name, image_tag], check=True)
+def ensure_environment_vars(vars_list):
+    """Verify that required environment variables are defined."""
+    missing = [v for v in vars_list if v not in os.environ]
+    if missing:
+        raise EnvironmentError(f"Missing environment variables: {', '.join(missing)}")
+
+
+def run_migrations():
+    """Run Alembic migrations (requires alembic.ini in db/)."""
+    subprocess.run(["alembic", "upgrade", "head"], check=True)

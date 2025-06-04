@@ -13,9 +13,9 @@ from datetime import datetime
 
 from src.sys_surveillance_cam.src.utils import iso_timestamp, generate_uuid, safe_join
 from src.sys_surveillance_cam.src.event_logger import log_motion_event
-from src.sys_surveillance_cam.cam_control.video_writer import MP4Writer
-from src.sys_surveillance_cam.movement_detection.motion_detector import MotionDetector
-from src.sys_surveillance_cam.constants import DEFAULT_CODEC, VIDEO_EXTENSION
+from src.sys_surveillance_cam.src.cam_control.video_writer import MP4Writer
+from src.sys_surveillance_cam.src.movement_detection.motion_detector import MotionDetector
+from src.sys_surveillance_cam.src.constants import DEFAULT_CODEC, VIDEO_EXTENSION
 
 
 class CameraHandler:
@@ -31,6 +31,9 @@ class CameraHandler:
         self.codec = config.get("codec", DEFAULT_CODEC)
         self.motion_detector = MotionDetector(sensitivity=config.get("min_area", 5000))
         self.base_recording_dir = Path("data/sys_surveillance_cam/recordings") / self.camera_id
+        self.events_dir = Path("data/sys_surveillance_cam/events") / self.camera_id
+        self.base_recording_dir.mkdir(parents=True, exist_ok=True)
+        self.events_dir.mkdir(parents=True, exist_ok=True)
 
         self.cap = cv2.VideoCapture(self.source)
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, self.width)

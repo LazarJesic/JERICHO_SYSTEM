@@ -1,0 +1,6 @@
+[
+  {
+    "name": "my_service",
+    "start_command": "systemctl start my_service"
+  }
+]

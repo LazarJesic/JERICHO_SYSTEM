@@ -22,7 +22,8 @@ def cleanup(tmp_path, monkeypatch):
 def test_log_motion_event_creates_file():
     camera_id = "camera_test"
     log_motion_event(camera_id)
-    events = list(Path("data/sys_surveillance_cam/events") / camera_id.glob("*.json"))
+    events_dir = Path("data/sys_surveillance_cam/events") / camera_id
+    events = list(events_dir.glob("*.json"))
     assert len(events) == 1
     data = json.loads(events[0].read_text())
     assert data["camera_id"] == camera_id

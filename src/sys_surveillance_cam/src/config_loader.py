@@ -8,9 +8,21 @@ System: JERICHO_SYSTEM
 import yaml
 from pathlib import Path
 from loguru import logger
-from src.sys_surveillance_cam.exceptions import InvalidConfigError
+from src.sys_surveillance_cam.src.exceptions import InvalidConfigError
 
-CONFIG_DIR = Path("config/sys_surveillance_cam")
+def get_config_dir() -> Path:
+    """Return the directory containing camera config files."""
+    candidates = [
+        Path("config/sys_surveillance_cam"),
+        Path("sys_surveillance_cam"),
+    ]
+    for c in candidates:
+        if c.exists():
+            return c
+    for p in Path(".").rglob("sys_surveillance_cam"):
+        if p.is_dir() and any(p.glob("*.yaml")):
+            return p
+    return candidates[0]
 
 
 def load_camera_config(file_path: Path) -> dict:
@@ -46,8 +58,9 @@ def load_all_camera_configs() -> list:
     Returns:
         List[dict]: List of valid camera configurations.
     """
+    cfg_dir = get_config_dir()
     configs = []
-    for file in CONFIG_DIR.glob("*.yaml"):
+    for file in cfg_dir.glob("*.yaml"):
         try:
             configs.append(load_camera_config(file))
         except InvalidConfigError as e:

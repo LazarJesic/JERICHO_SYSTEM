@@ -1,0 +1,24 @@
+# Path: config/SYS_WATCHDOG/config.yaml
+# Description: Monitoring, observability, security, and backup settings for SYS_WATCHDOG.
+# Version: 2.1
+# Sub_System: SYS_WATCHDOG
+# System: JERICHO_SYSTEM
+
+monitor_interval: 30
+cpu_threshold: 85
+memory_threshold: 85
+disk_threshold: 90
+
+metrics_port: 9000
+health_check_path: "/healthz"
+
+vault_address: "https://vault.example.com"
+vault_token: "<env|VAULT_TOKEN>"
+
+backup_schedule: "0 * * * *"
+backup_retention_days: 7
+backup_directory: "/backups"
+
+slack_webhook: "https://hooks.slack.com/services/XXX/YYY/ZZZ"
+
+log_level: "INFO"

@@ -1,20 +1,25 @@
 """
 Path: utilities/logging_setup.py
-Description: Centralized Loguru configuration for all subsystems.
-Version: 1.0.0
+Description: Configures structured JSON logging using Loguru with rotation.
+Version: 2.1.0
 Sub_System: UTILITIES
 System: JERICHO_SYSTEM
 """
-from loguru import logger
-import os
 
-def configure_logging(subsys: str):
-    """
-    Sets up a rotating file sink under data/<subsys>/logs/.
-    """
-    log_dir = os.path.join("data", subsys, "logs")
-    os.makedirs(log_dir, exist_ok=True)
-    log_path = os.path.join(log_dir, f"{subsys}.log")
+from loguru import logger
+import sys
+
+
+def setup_logging(log_path: str = "logs/watchdog.log", level: str = "INFO"):
+    """Configure Loguru logger to write JSON logs with rotation."""
     logger.remove()
-    logger.add(log_path, rotation="10 MB", retention="14 days", serialize=False, level="INFO")
-    return logger
+    logger.add(
+        log_path,
+        rotation="10 MB",
+        retention="7 days",
+        level=level,
+        serialize=True,
+        backtrace=True,
+        diagnose=True
+    )
+    logger.add(sys.stdout, level=level, format="{time} {level} {message}")

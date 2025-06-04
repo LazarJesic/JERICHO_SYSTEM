@@ -1,0 +1,13 @@
+hvac
+SQLAlchemy
+psutil
+numpy
+opencv-python-headless
+PyYAML
+fastapi
+uvicorn
+prometheus-client
+python-dotenv
+httpx
+gnupg
+loguru
