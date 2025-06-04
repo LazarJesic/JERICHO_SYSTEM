@@ -5,8 +5,10 @@ Version: 1.0.0
 Sub_System: SYS_SURVEILLANCE_CAM
 System: JERICHO_SYSTEM
 """
+
 import sys
-from hardware_discovery import discover_webcams, discover_microphones, discover_hardware
+from hardware_discovery import discover_webcams, discover_microphones
+
 
 def audit_webcam_processes(webcams):
     """
@@ -18,8 +20,15 @@ def audit_webcam_processes(webcams):
             dev = cam["device"]
             try:
                 import subprocess
+
                 cmd = f"lsof {dev} -F pn"
-                proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                proc = subprocess.Popen(
+                    cmd,
+                    shell=True,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    text=True,
+                )
                 out, _ = proc.communicate()
                 pid = None
                 for line in out.splitlines():
@@ -38,18 +47,26 @@ def audit_webcam_processes(webcams):
         # Use handle64.exe if available, fallback to psutil for process names
         try:
             import subprocess
+
             handle_path = "handle64.exe"
             for cam in webcams:
                 device_id = cam["device"]
                 # Not all Windows drivers use 'Device' name in handle.exe output, so this is heuristic
                 cmd = f'"{handle_path}" -a -u | findstr /i "{device_id}"'
-                proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                proc = subprocess.Popen(
+                    cmd,
+                    shell=True,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    text=True,
+                )
                 out, _ = proc.communicate()
                 for line in out.splitlines():
                     results.append({"device": device_id, "raw_handle_output": line})
         except Exception:
             pass
     return results
+
 
 def audit_mic_processes(mics):
     """
@@ -61,8 +78,15 @@ def audit_mic_processes(mics):
             dev = mic["device"]
             try:
                 import subprocess
+
                 cmd = f"lsof {dev} -F pn"
-                proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                proc = subprocess.Popen(
+                    cmd,
+                    shell=True,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    text=True,
+                )
                 out, _ = proc.communicate()
                 pid = None
                 for line in out.splitlines():
@@ -81,17 +105,25 @@ def audit_mic_processes(mics):
         # Use handle64.exe if available, fallback to psutil for process names
         try:
             import subprocess
+
             handle_path = "handle64.exe"
             for mic in mics:
                 device_id = mic["device"]
                 cmd = f'"{handle_path}" -a -u | findstr /i "{device_id}"'
-                proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                proc = subprocess.Popen(
+                    cmd,
+                    shell=True,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    text=True,
+                )
                 out, _ = proc.communicate()
                 for line in out.splitlines():
                     results.append({"device": device_id, "raw_handle_output": line})
         except Exception:
             pass
     return results
+
 
 def main():
     """
@@ -107,12 +139,12 @@ def main():
     print("===========================================")
     print("\nWebcams:")
     for cam in webcams:
-        print(f"Device: {cam['device']}, Name: {cam.get('name', 'N/A')}")   
-    
+        print(f"Device: {cam['device']}, Name: {cam.get('name', 'N/A')}")
+
     print("\nMicrophones:")
     for mic in microphones:
         print(f"Device: {mic['device']}, Name: {mic.get('name', 'N/A')}")
-    
+
     print("\nProcesses using webcams and microphones:")
     print("===========================================")
     if not webcam_processes and not mic_processes:
@@ -123,7 +155,7 @@ def main():
     if not mic_processes:
         print("No processes found using microphones.")
     if webcam_processes:
-        print("\nWebcam Processes:")    
+        print("\nWebcam Processes:")
         for proc in webcam_processes:
             print(proc)
     if mic_processes:
@@ -131,10 +163,11 @@ def main():
         for proc in mic_processes:
             print(proc)
 
+
 if __name__ == "__main__":
     main()
-    
 
-######### Code Explanation #########
+
+# Code Explanation
 # This script is designed to be run as a standalone module.
 # It will discover connected webcams and microphones, then audit processes using those devices.

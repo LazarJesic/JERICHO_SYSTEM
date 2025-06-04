@@ -5,13 +5,14 @@ Version: 1.0.2
 Sub_System: SYS_SURVEILLANCE_CAM
 System: JERICHO_SYSTEM
 """
+
 import cv2
 import time
 from pathlib import Path
 from loguru import logger
 from datetime import datetime
 
-from src.sys_surveillance_cam.src.utils import iso_timestamp, generate_uuid, safe_join
+from src.sys_surveillance_cam.src.utils import safe_join
 from src.sys_surveillance_cam.src.event_logger import log_motion_event
 from src.sys_surveillance_cam.cam_control.video_writer import MP4Writer
 from src.sys_surveillance_cam.movement_detection.motion_detector import MotionDetector
@@ -22,6 +23,7 @@ class CameraHandler:
     """
     Handles real-time capture, motion detection, video writing, and event logging for a single camera.
     """
+
     def __init__(self, config: dict):
         self.camera_id = config["camera_id"]
         self.source = config["source"]
@@ -30,7 +32,9 @@ class CameraHandler:
         self.fps = config.get("fps", 20)
         self.codec = config.get("codec", DEFAULT_CODEC)
         self.motion_detector = MotionDetector(sensitivity=config.get("min_area", 5000))
-        self.base_recording_dir = Path("data/sys_surveillance_cam/recordings") / self.camera_id
+        self.base_recording_dir = (
+            Path("data/sys_surveillance_cam/recordings") / self.camera_id
+        )
 
         self.cap = cv2.VideoCapture(self.source)
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, self.width)
@@ -65,11 +69,18 @@ class CameraHandler:
                     output_dir = self.base_recording_dir / date_str
                     output_path = safe_join(output_dir, filename)
 
-                    writer = MP4Writer(str(output_path), self.codec, self.fps, (self.width, self.height))
+                    writer = MP4Writer(
+                        str(output_path),
+                        self.codec,
+                        self.fps,
+                        (self.width, self.height),
+                    )
                     log_motion_event(self.camera_id)
                     motion_active = True
                     last_motion_ts = time.time()
-                    logger.info(f"Motion detected on {self.camera_id}; started recording to {output_path}")
+                    logger.info(
+                        f"Motion detected on {self.camera_id}; started recording to {output_path}"
+                    )
 
                 if writer:
                     writer.write(frame)

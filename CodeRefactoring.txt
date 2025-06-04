@@ -1,0 +1,1 @@
+RULE: Each module must have a main() function and be executable as a standalone script.
