@@ -11,3 +11,4 @@ python-dotenv
 httpx
 gnupg
 loguru
+pytest-asyncio
